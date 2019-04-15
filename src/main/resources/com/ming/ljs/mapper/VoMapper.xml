@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ljs.mapper.VoMapper">
+
+
+    <resultMap id="allVoMapper" type="vo">
+        <result column="like_count" property="like"  jdbcType="INTEGER"/>
+        <association column="id" property="news"  select="com.ming.ljs.mapper.NewsMapper.selectByPrimaryKey"/>
+        <association column="user_id" property="user"  select="com.ming.ljs.mapper.UserMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <select id="findAllVo" resultMap="allVoMapper">
+    select id ,user_id ,like_count from news
+    </select>
+
+
+    <resultMap id="allCommentVo" type="commentVo">
+        <association  column="id" property="comment" select="com.ming.ljs.mapper.CommentMapper.selectByPrimaryKey"/>
+        <association  column="user_id"  property="user" select="com.ming.ljs.mapper.UserMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <select id="findAllCommontVoByNewsId" resultMap="allCommentVo">
+    select
+    id, content, user_id, entity_id, entity_type, created_date, `status`
+    from comment
+    where entity_id = #{newsId}
+    </select>
+
+
+
+</mapper>
