@@ -1,11 +1,7 @@
 package com.ming.ljs.mapper;
 
 import com.ming.ljs.bean.User;
-import com.ming.ljs.bean.Vo;
 import org.apache.ibatis.annotations.Param;
-
-
-import java.util.List;
 
 
 public interface UserMapper {

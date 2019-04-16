@@ -5,6 +5,7 @@ import com.ming.ljs.mapper.UserMapper;
 import com.ming.ljs.service.UserService;
 import com.ming.ljs.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
+    @Value("${headImgUrl}")
+    String headImgUrl;
 
 
     @Override
@@ -35,6 +39,9 @@ public class UserServiceImpl implements UserService {
     public boolean register(User user) {
         int salt = (int) ((Math.random()*100)%100);
         user.setSalt(String.valueOf(salt));
+        int b = (int) ((Math.random()*11)%11);
+        String headUrl = headImgUrl+"headImg/"+b+".jpg";
+        user.setHeadUrl(headUrl);
         user.setPassword(MD5Utils.getMD5(user.getPassword(),salt));
         int i = userMapper.insert(user);
         return i == 1 ;

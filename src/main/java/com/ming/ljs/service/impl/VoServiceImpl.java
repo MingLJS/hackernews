@@ -1,8 +1,7 @@
 package com.ming.ljs.service.impl;
 
-import com.ming.ljs.bean.CommentVo;
-import com.ming.ljs.bean.Vo;
-import com.ming.ljs.mapper.UserMapper;
+import com.ming.ljs.util.utilBean.CommentVoBeanUtil;
+import com.ming.ljs.util.utilBean.VoBeanUtil;
 import com.ming.ljs.mapper.VoMapper;
 import com.ming.ljs.service.VoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +19,14 @@ public class VoServiceImpl implements VoService {
     VoMapper voMapper;
 
     @Override
-    public List<Vo> findAllVo() {
-        List<Vo> vo = voMapper.findAllVo();
+    public List<VoBeanUtil> findAllVo() {
+        List<VoBeanUtil> vo = voMapper.findAllVo();
         return vo;
     }
 
     @Override
-    public List<CommentVo> findAllCommontVoByNewsId(int newsId) {
-        List<CommentVo> comments = voMapper.findAllCommontVoByNewsId(newsId);
+    public List<CommentVoBeanUtil> findAllCommontVoByNewsId(int newsId) {
+        List<CommentVoBeanUtil> comments = voMapper.findAllCommontVoByNewsId(newsId);
         return comments;
     }
 }

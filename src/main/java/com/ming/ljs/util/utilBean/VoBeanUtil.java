@@ -1,10 +1,13 @@
-package com.ming.ljs.bean;
+package com.ming.ljs.util.utilBean;
+
+import com.ming.ljs.bean.News;
+import com.ming.ljs.bean.User;
 
 /**
  * created by ZMX
  * Date 2019/4/10 Time 21:56
  */
-public class Vo {
+public class VoBeanUtil {
     User user;
     News news;
     int like;
@@ -19,7 +22,7 @@ public class Vo {
 
     @Override
     public String toString() {
-        return "Vo{" +
+        return "VoBeanUtil{" +
                 "user=" + user +
                 ", news=" + news +
                 ", like=" + like +

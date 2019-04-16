@@ -114,4 +114,46 @@
       conversation_id = #{conversationId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <resultMap id="msgListResultMap" type="com.ming.ljs.util.utilBean.ConversationBeanUtil">
+    <result column="sm" property="unread"/>
+    <result column="cm"   property="count"/>
+    <association column="mid" property="message" select="com.ming.ljs.mapper.MessageMapper.selectByPrimaryKey"/>
+    <association column="from_id" property="user" select="com.ming.ljs.mapper.UserMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <select id="msgList" resultMap="msgListResultMap">
+    select
+    id as mid,
+    from_id,
+	sum(has_read) as sm,
+	count(*) as cm
+    from  (select * from `message` order by `created_date` desc limit 10000000000) t
+    where  t.to_id = #{userId} or t.from_id = #{userId}
+    group by t.conversation_id
+    </select>
+
+  <resultMap id="msgDetailResultMap" type="com.ming.ljs.util.utilBean.MessageBeanUtil">
+    <result column="from_id"  property="userId"/>
+    <result column="head_url"  property="headUrl"/>
+    <result column="content"  property="content"/>
+    <result column="created_date"  property="createdDate"/>
+  </resultMap>
+  <select id="msgDetail" resultMap="msgDetailResultMap">
+    select
+    from_id,
+    head_url,
+    content,
+    created_date
+    from message m inner join `user` u
+    on  m.from_id = u.id
+    where  conversation_id = #{conversationId}
+    </select>
+
+  <update id="updateHasReadByConversationId" parameterType="com.ming.ljs.bean.Message">
+    update message
+    set has_read = #{hasRead}
+    where conversation_id = #{conversationId}
+  </update>
+
 </mapper>

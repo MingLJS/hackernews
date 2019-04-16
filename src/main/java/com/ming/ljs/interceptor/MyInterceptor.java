@@ -23,12 +23,6 @@ public class MyInterceptor implements HandlerInterceptor {
         if((session != null && session.getAttribute("user") != null)){
             return true;
         }
-        if(request.getRequestURI().endsWith("like") || request.getRequestURI().endsWith("dislike")){
-            OResult oResult = new OResult();
-            oResult.setCode(0);
-            request.setAttribute("oResult",oResult);
-            return false;
-        }
         response.sendRedirect("/home");
         return false;
     }

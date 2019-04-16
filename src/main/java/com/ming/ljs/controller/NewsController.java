@@ -1,13 +1,11 @@
 package com.ming.ljs.controller;
 
-import com.ming.ljs.bean.Comment;
-import com.ming.ljs.bean.CommentVo;
+import com.ming.ljs.util.utilBean.CommentVoBeanUtil;
 import com.ming.ljs.bean.News;
 import com.ming.ljs.bean.User;
 import com.ming.ljs.service.NewsService;
 import com.ming.ljs.service.VoService;
 import com.ming.ljs.util.OResult;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -116,6 +113,12 @@ public class NewsController {
         return oResult;
     }
 
+    /**
+     * 查看news所有评论
+     * @param newsId
+     * @param model
+     * @return
+     */
     @RequestMapping("news/{newsId}")
     public String showNews(@PathVariable("newsId")int newsId,Model model){
         //通过newsId获取对应user信息
@@ -125,7 +128,7 @@ public class NewsController {
         //获取like信息
         Integer likeCount = news.getLikeCount();
         //获取当前新闻所有评论列表
-        List<CommentVo> comments = voService.findAllCommontVoByNewsId(newsId);
+        List<CommentVoBeanUtil> comments = voService.findAllCommontVoByNewsId(newsId);
         model.addAttribute("owner",user);
         model.addAttribute("like",likeCount);
         model.addAttribute("contextPath","");

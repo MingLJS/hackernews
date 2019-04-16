@@ -1,18 +1,15 @@
 package com.ming.ljs.controller;
 
 import com.ming.ljs.bean.User;
-import com.ming.ljs.bean.Vo;
-import com.ming.ljs.mapper.UserMapper;
+import com.ming.ljs.util.utilBean.VoBeanUtil;
 import com.ming.ljs.service.UserService;
 import com.ming.ljs.service.VoService;
 import com.ming.ljs.util.OResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -36,9 +33,12 @@ public class UserController {
      * @return
      */
     @RequestMapping("home")
-    public String home(Model  model){
+    public String home(HttpSession session,Model  model){
         model.addAttribute("contextPath","");
-        List<Vo> vos = voService.findAllVo();
+        List<VoBeanUtil> vos = voService.findAllVo();
+        if(session.getAttribute("user") == null) {
+            model.addAttribute("pop", 0);
+        }
         model.addAttribute("vos",vos);
         return "home";
     }

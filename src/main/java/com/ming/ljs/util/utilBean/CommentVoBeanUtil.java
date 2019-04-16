@@ -1,10 +1,13 @@
-package com.ming.ljs.bean;
+package com.ming.ljs.util.utilBean;
+
+import com.ming.ljs.bean.Comment;
+import com.ming.ljs.bean.User;
 
 /**
  * created by ZMX
  * Date 2019/4/14 Time 23:03
  */
-public class CommentVo {
+public class CommentVoBeanUtil {
     User user;
     Comment comment;
 
@@ -26,7 +29,7 @@ public class CommentVo {
 
     @Override
     public String toString() {
-        return "CommentVo{" +
+        return "CommentVoBeanUtil{" +
                 "user=" + user +
                 ", comment=" + comment +
                 '}';

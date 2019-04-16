@@ -69,7 +69,7 @@
             </form>
             <#else>
             <div class="login-actions">
-                <a class="btn btn-success" href="${contextPath}/?pop=1">登录后评论</a>
+                <a class="btn btn-success" href="${contextPath}/home">登录后评论</a>
             </div>
             </#if>
         </div>

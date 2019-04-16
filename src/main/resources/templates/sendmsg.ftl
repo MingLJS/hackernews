@@ -59,7 +59,7 @@
 
         var elementById = document.getElementById("msg_to");
         var to=elementById.value;
-        var elementById2 = document.getElementById("msg_content");
+        var elementById2 = document.getElementById("mock:k");
         var content=elementById2.innerText;
         //alert(content)
 
@@ -73,7 +73,7 @@
                 data: 'toName='+to+'&&content='+content ,
                 success:function(data){
                     //alert(data)
-                    var dataobj = eval('(' + data + ')');
+                    var dataobj = data;
                     //alert(dataobj.code)
                     //alert(dataobj.msg)
 

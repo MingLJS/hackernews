@@ -3,7 +3,7 @@
 <mapper namespace="com.ming.ljs.mapper.VoMapper">
 
 
-    <resultMap id="allVoMapper" type="vo">
+    <resultMap id="allVoMapper" type="com.ming.ljs.util.utilBean.VoBeanUtil">
         <result column="like_count" property="like"  jdbcType="INTEGER"/>
         <association column="id" property="news"  select="com.ming.ljs.mapper.NewsMapper.selectByPrimaryKey"/>
         <association column="user_id" property="user"  select="com.ming.ljs.mapper.UserMapper.selectByPrimaryKey"/>
@@ -13,7 +13,7 @@
     </select>
 
 
-    <resultMap id="allCommentVo" type="commentVo">
+    <resultMap id="allCommentVo" type="com.ming.ljs.util.utilBean.CommentVoBeanUtil">
         <association  column="id" property="comment" select="com.ming.ljs.mapper.CommentMapper.selectByPrimaryKey"/>
         <association  column="user_id"  property="user" select="com.ming.ljs.mapper.UserMapper.selectByPrimaryKey"/>
     </resultMap>

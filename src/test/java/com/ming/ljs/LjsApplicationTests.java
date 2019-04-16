@@ -1,10 +1,10 @@
 package com.ming.ljs;
 
-import com.ming.ljs.bean.User;
-import com.ming.ljs.bean.Vo;
-import com.ming.ljs.mapper.UserMapper;
+import com.ming.ljs.util.utilBean.ConversationBeanUtil;
+import com.ming.ljs.util.utilBean.VoBeanUtil;
+import com.ming.ljs.mapper.MessageMapper;
 import com.ming.ljs.mapper.VoMapper;
-import org.junit.Assert;
+import com.ming.ljs.util.utilBean.MessageBeanUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -32,10 +33,12 @@ public class LjsApplicationTests {
         int i = userMapper.insert(user);
         Assert.assertTrue(i==1);
          **/
-        List<Vo> allVo = userMapper.findAllVo();
+        List<VoBeanUtil> allVo = userMapper.findAllVo();
         Logger logger = LoggerFactory.getLogger(this.getClass());
         logger.error("allVo:"+allVo);
 
     }
+
+
 
 }
